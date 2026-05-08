@@ -120,17 +120,34 @@ Exploratory SQL analysis included:
 
 ---
 
-# 📊 Tableau Dashboards
+## 📊 Tableau Dashboards
 
-## Interactive Dashboards
-- Executive revenue overview  
+Interactive dashboards built in Tableau Public:
+
+- Executive revenue performance overview  
 - Customer segmentation analysis  
-- Cohort retention heatmap  
+- Cohort retention heatmaps  
 - Product performance distribution  
 - Revenue concentration (80/20 analysis)  
 
-**Tableau File:**
-`tableau_public/Forma Active – Revenue & Retention Analysis.twbx`
+---
+
+### 📊 Revenue Performance Overview
+![Revenue Performance](https://github.com/DataByKyryloP/ecommerce-analytics-forma-active/blob/main/visuals/dashboard_slides/slide_1_performance.png)
+
+---
+
+### 👥 Customer Behaviour Analysis
+![Customer Behaviour](https://github.com/DataByKyryloP/ecommerce-analytics-forma-active/blob/main/visuals/dashboard_slides/slide_2_behaviour.png)
+
+---
+
+### 💡 Key Insights Summary
+![Insights](https://github.com/DataByKyryloP/ecommerce-analytics-forma-active/blob/main/visuals/dashboard_slides/slide_3_insight.png)
+
+
+📊 Tableau Dashboard:
+[Download Tableau Workbook](./tableau_public/Forma%20Active%20–%20Revenue%20&%20Retention%20Analysis.twbx)
 
 ---
 
@@ -190,11 +207,26 @@ Final analytical models used for reporting and dashboards:
 
 ## Data Quality & Testing
 
-All dbt models are validated using automated tests:
+All dbt models are validated using automated testing:
 
 - not_null constraints  
 - unique key validation  
 - referential integrity checks  
+
+---
+
+### ⚙️ Pipeline Execution Success
+![dbt run success](https://github.com/DataByKyryloP/ecommerce-analytics-forma-active/blob/main/dbt/dbt_pipeline_build_success.png)
+
+---
+
+### 🧪 Test Suite Passed
+![dbt tests](https://github.com/DataByKyryloP/ecommerce-analytics-forma-active/blob/main/dbt/dbt_tests_all_pass.png)
+
+---
+
+### 📊 Staging Layer Data Quality Validation
+![dbt data quality](https://github.com/DataByKyryloP/ecommerce-analytics-forma-active/blob/main/dbt/dbt_data_quality_testing_results_staging.png)
 
 ### Execution Results
 
@@ -254,13 +286,78 @@ tableau_public/Forma Active – Revenue & Retention Analysis.twbx
 ```text
 ecommerce-analytics-forma-active/
 │
-├── dbt_project/
-├── sql/
-├── data/query_outputs/
-├── notebooks/
-├── tableau_public/
-├── visuals/
+├── dbt_project/                          # dbt transformation layer
+│   ├── analyses/                         # ad-hoc dbt analysis queries
+│   ├── macros/                           # reusable SQL macros
+│   ├── models/
+│   │   ├── marts/                        # business-level models (rpt_*)
+│   │   │   ├── rpt_monthly_revenue.sql
+│   │   │   ├── rpt_customer_ltv.sql
+│   │   │   ├── rpt_product_performance.sql
+│   │   │   ├── rpt_aov_tiers.sql
+│   │   │   ├── rpt_pareto_products.sql
+│   │   │   └── rpt_cohort_ltv.sql
+│   │   │
+│   │   └── staging/                     # staging models (stg_*)
+│   │       ├── stg_customers.sql
+│   │       ├── stg_orders.sql
+│   │       ├── stg_order_line_items.sql
+│   │       ├── stg_products.sql
+│   │       ├── schema.yml
+│   │       └── sources.yml
+│   │
+│   ├── seeds/
+│   ├── snapshots/
+│   ├── tests/
+│   ├── dbt_project.yml
+│   ├── README_dbt.md
+│   └── .gitignore
+│
+├── sql/                                 # standalone SQL analytics layer (Q1–Q7)
+│   ├── 01_monthly_revenue.sql
+│   ├── 02_top_customers.sql
+│   ├── 03_product_performance.sql
+│   ├── 04_repeat_purchase.sql
+│   ├── 05_aov_segmentation.sql
+│   ├── 06_revenue_concentration.sql
+│   ├── 06_revenue_concentration_pareto.sql
+│   └── 07_cohort_ltv.sql
+│
+├── data/
+│   └── query_outputs/                   # exported analysis results
+│       ├── q1_monthly_revenue.csv
+│       ├── q2_top_customers.csv
+│       ├── q3_products_performance_clean.csv
+│       ├── q4_repeat_purchase.csv
+│       ├── q5_aov_segmentation.csv
+│       ├── q6_revenue_concentration.csv
+│       ├── q6_revenue_concentration_pareto.csv
+│       └── q7_cohort_ltv.csv
+│
+├── notebooks/                           # ETL + exploration notebooks
+│   ├── archive/
+│   │   ├── 01_shopify_api_pull_messy.ipynb
+│   │   ├── 02_postgres_load_messy.ipynb
+│   │   ├── 03_adjustment_to_q3.ipynb
+│   │   └── forma_active_clean.ipynb
+│
+├── tableau_public/                      # BI layer (Tableau workbook)
+│   └── Forma Active – Revenue & Retention Analysis.twbx
+│
+├── visuals/                             # dashboard screenshots for README
+│   ├── dashboard_slides/
+│   │   ├── slide_1_performance.png
+│   │   ├── slide_2_behaviour.png
+│   │   └── slide_3_insight.png
+│
+├── dbt/                                 # dbt run/test outputs (evidence layer)
+│   ├── dbt_pipeline_build_success.png
+│   ├── dbt_tests_all_pass.png
+│   └── dbt_data_quality_testing_results(staging_layer_validation).png
+│
 ├── docs/
+│   └── data_dictionary.md
+│
 └── README.md
 ```
 ## Data Dictionary
