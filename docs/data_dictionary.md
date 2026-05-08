@@ -69,3 +69,12 @@ This project follows a 3-layer analytics architecture:
    - Analytical queries (Q1–Q7)
    - Business metrics + cohort + revenue analysis
 
+### Grain Definition
+
+- customers: 1 row per customer
+- orders: 1 row per order
+- order_line_items: 1 row per product per order
+- products: 1 row per product variant
+
+This ensures consistent aggregation logic across SQL, dbt, and BI layers.
+
