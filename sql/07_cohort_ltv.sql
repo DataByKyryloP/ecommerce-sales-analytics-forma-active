@@ -1,0 +1,42 @@
+-- Q7: Cohort LTV Analysis
+-- Business Question: How does revenue evolve across customer cohorts over time?
+
+WITH cohort_base AS (
+    SELECT
+        customer_id,
+        cohort_month
+    FROM customers
+),
+
+orders_enriched AS (
+    SELECT
+        o.customer_id,
+        o.order_id,
+        o.created_at,
+        o.total_price,
+        o.order_month,
+        c.cohort_month
+    FROM orders o
+    JOIN cohort_base c
+        ON o.customer_id = c.customer_id
+),
+
+cohort_ltv AS (
+    SELECT
+        cohort_month,
+        order_month,
+        SUM(total_price) AS revenue,
+        COUNT(DISTINCT customer_id) AS active_customers
+    FROM orders_enriched
+    GROUP BY cohort_month, order_month
+)
+
+SELECT *
+FROM cohort_ltv
+ORDER BY cohort_month, order_month;
+
+
+-- Insight:
+-- Cohort retention shows strong early repeat purchasing across multiple cohorts, with revenue concentration occurring within the first 2–4 months after acquisition.
+-- Later cohort months show declining active customer counts, indicating natural decay in engagement over time.
+-- This suggests that lifecycle value is driven heavily by early retention, making onboarding and early re-engagement campaigns critical for revenue expansion.
