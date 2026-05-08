@@ -10,6 +10,16 @@ Raw Data → Staging Models → Mart Models → BI Layer
 
 ---
 
+## Tools
+
+- dbt
+- PostgreSQL (Neon)
+- SQL
+- Shopify API (source system)
+- Tableau (downstream BI)
+
+---
+
 ## Project Structure
 
 ### Staging Layer
@@ -33,11 +43,12 @@ Responsibilities:
 
 Mart models contain business-ready metrics used for analytics and reporting:
 
-- Revenue analysis (fct_revenue)
-- Customer lifetime value (fct_customer_ltv)
-- Product performance (fct_product_performance)
-- Repeat purchase behavior (fct_repeat_purchase)
-- Cohort retention analysis (fct_cohort_ltv)
+- rpt_monthly_revenue
+- rpt_customer_ltv
+- rpt_product_performance
+- rpt_aov_tiers
+- rpt_pareto_products
+- rpt_cohort_ltv
 
 These models serve as the foundation for SQL analysis and Tableau dashboards.
 
@@ -51,12 +62,14 @@ Data quality is enforced using dbt schema tests:
 - unique key validation
 - referential integrity checks
 
+Data quality validation screenshots are available in the /dbt/ folder of the repository.
+
 ---
 
 ## Execution Results
 
-- dbt run: 10/10 models executed successfully
-- dbt test: 9/9 tests passed
+- dbt run: 10/10 models executed successfully (staging + marts)
+- dbt test: 9/9 tests passed (data quality + integrity validation)
 
 ---
 
@@ -80,3 +93,10 @@ dbt models feed into:
 - SQL analytical queries (Q1–Q7)
 - Tableau dashboards
 - KPI reporting layer
+
+---
+
+## Business Impact
+
+This dbt layer enables consistent, testable transformation logic for ecommerce analytics,
+supporting revenue tracking, customer retention analysis, and product performance reporting.
