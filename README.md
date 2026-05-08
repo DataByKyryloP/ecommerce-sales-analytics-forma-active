@@ -216,17 +216,17 @@ All dbt models are validated using automated testing:
 ---
 
 ### ⚙️ Pipeline Execution Success
-![dbt run success](https://github.com/DataByKyryloP/ecommerce-analytics-forma-active/blob/main/dbt/dbt_pipeline_build_success.png)
+![dbt run success](./visuals/dbt/dbt_pipeline_build_success.png)
 
 ---
 
 ### 🧪 Test Suite Passed
-![dbt tests](https://github.com/DataByKyryloP/ecommerce-analytics-forma-active/blob/main/dbt/dbt_tests_all_pass.png)
+![dbt tests](./visuals/dbt/dbt_tests_all_pass.png)
 
 ---
 
-### 📊 Staging Layer Data Quality Validation
-![dbt data quality](https://github.com/DataByKyryloP/ecommerce-analytics-forma-active/blob/main/dbt/dbt_data_quality_testing_results_staging.png)
+### 📊 Data Quality Validation
+![dbt validation](./visuals/dbt/dbt_data_quality_testing_results_staging.png)
 
 ### Execution Results
 
