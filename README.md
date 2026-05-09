@@ -65,6 +65,17 @@ Tableau Dashboards & Storytelling Layer
 
 ---
 
+## Project Highlights
+
+- End-to-end analytics engineering workflow
+- Synthetic scaling from 10 → 300 ecommerce orders
+- Modular dbt transformation architecture
+- Automated data quality testing
+- Interactive Tableau dashboard storytelling
+- Production-style warehouse modeling
+
+---
+
 ## Data Engineering Notes
 
 - Synthetic scaling (10 → 300 orders) simulates production workload
@@ -73,7 +84,7 @@ Tableau Dashboards & Storytelling Layer
 
 ---
 
-# 🧱 DBT + SQL LAYER
+# 🧱 Analytics Engineering Layer
 
 ## SQL Analytics (Exploratory Layer)
 
@@ -166,8 +177,8 @@ https://public.tableau.com/views/FormaActiveRevenueRetentionAnalysis/FinalStory_
 
 ![Key Insights Summary](./visuals/dashboard_slides/slide_3_insight.png)
 
-📁 Tableau Workbook (optional local file):
-`./tableau_public/Forma Active – Revenue & Retention Analysis.twbx`
+📁 Tableau Workbook (optional local file):  
+[Forma Active – Revenue & Retention Analysis.twbx](./tableau_public/Forma%20Active%20%E2%80%93%20Revenue%20%26%20Retention%20Analysis.twbx)
 
 ---
 
@@ -265,7 +276,7 @@ ecommerce-analytics-forma-active/
 ## Data Dictionary
 
 Available in:  
-`docs/data_dictionary.md`
+[docs/data_dictionary.md](./docs/data_dictionary.md)
 
 ---
 
