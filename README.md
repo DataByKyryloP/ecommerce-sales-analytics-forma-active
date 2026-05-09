@@ -6,6 +6,8 @@ This project simulates a real-world analytics engineering workflow for a direct-
 
 The project follows a production-style analytics architecture using Python, SQL, PostgreSQL, dbt, and Tableau to analyze revenue performance, customer behavior, product analytics, and retention patterns.
 
+This project was developed iteratively through multiple ETL and modeling stages, including debugging of dbt models, schema adjustments, and synthetic data scaling for analytics simulation.
+
 ---
 
 ## Business Questions
@@ -63,7 +65,29 @@ Tableau Dashboards & Storytelling Layer
 
 ---
 
+## Data Engineering Notes
+
+- Synthetic scaling (10 → 300 orders) simulates production workload
+- All transformations are fully reproducible via SQL + dbt
+- Notebook exploration was refactored into a production-style pipeline
+
+---
+
 # 🧱 DBT + SQL LAYER
+
+## SQL Analytics (Exploratory Layer)
+
+Before dbt modeling, SQL was used to validate business logic and explore key metrics:
+
+- Monthly revenue trends  
+- Top customer analysis  
+- Product performance ranking  
+- Repeat purchase behavior  
+- AOV segmentation  
+- Revenue concentration (Pareto analysis)  
+- Cohort LTV analysis  
+
+---
 
 ## Data Modeling (dbt Layer)
 
@@ -98,120 +122,12 @@ Tableau Dashboards & Storytelling Layer
 - unique key validation  
 - referential integrity checks  
 
-### Results
-- dbt run: 10/10 models successful  
-- dbt test: 9/9 tests passed  
-
-Validation stored in `/dbt/`.
-
 ---
 
-## SQL Analytics Layer
+### ⚙️ dbt validation (development + debugging phase)
+![dbt validation](./visuals/dbt/dbt_data_quality_testing_results_staging.png)
 
-Exploratory SQL analysis included:
-
-- Monthly revenue trends  
-- Top customer analysis  
-- Product performance ranking  
-- Repeat purchase behavior  
-- AOV segmentation  
-- Pareto revenue analysis  
-- Cohort LTV analysis  
-
----
-
-## 📊 Tableau Dashboards
-
-Interactive dashboards built in Tableau Public:
-
-- Executive revenue performance overview  
-- Customer segmentation analysis  
-- Cohort retention heatmaps  
-- Product performance distribution  
-- Revenue concentration (80/20 analysis)  
-
----
-
-### 📊 Revenue Performance Overview
-![Revenue Performance](https://github.com/DataByKyryloP/ecommerce-analytics-forma-active/blob/main/visuals/dashboard_slides/slide_1_performance.png)
-
----
-
-### 👥 Customer Behaviour Analysis
-![Customer Behaviour](https://github.com/DataByKyryloP/ecommerce-analytics-forma-active/blob/main/visuals/dashboard_slides/slide_2_behaviour.png)
-
----
-
-### 💡 Key Insights Summary
-![Insights](https://github.com/DataByKyryloP/ecommerce-analytics-forma-active/blob/main/visuals/dashboard_slides/slide_3_insight.png)
-
-
-📊 Tableau Dashboard:
-[Download Tableau Workbook](./tableau_public/Forma%20Active%20–%20Revenue%20&%20Retention%20Analysis.twbx)
-
----
-
-## Key Insights
-
-- Revenue is heavily concentrated in a small number of products (Pareto effect)
-- A small group of customers drives most revenue
-- Repeat purchases significantly increase LTV
-- Growth is primarily acquisition-driven rather than retention-driven
-- Cohort retention drops after initial purchase cycle
-
----
-
-## Data Engineering Notes
-
-- Synthetic scaling (10 → 300 orders) simulates production workload
-- All transformations are fully reproducible via SQL + dbt
-- Notebook exploration was refactored into a production-style pipeline
-
----
-
-## Data Modeling (dbt Layer)
-
-The dbt project implements a modular analytics engineering architecture:
-
----
-
-### Staging Layer
-
-Standardized raw warehouse tables:
-
-- stg_customers  
-- stg_orders  
-- stg_order_line_items  
-- stg_products  
-
-**Responsibilities:**
-- Data cleaning
-- Type normalization
-- Deduplication logic
-- Schema consistency enforcement
-
----
-
-### Mart Layer (Business Models)
-
-Final analytical models used for reporting and dashboards:
-
-- rpt_monthly_revenue — revenue trends over time  
-- rpt_customer_ltv — customer lifetime value analysis  
-- rpt_product_performance — SKU performance ranking  
-- rpt_aov_tiers — order value segmentation  
-- rpt_pareto_products — revenue concentration analysis  
-- rpt_cohort_ltv — cohort retention and LTV tracking  
-
----
-
-## Data Quality & Testing
-
-All dbt models are validated using automated testing:
-
-- not_null constraints  
-- unique key validation  
-- referential integrity checks  
+> Note: This execution represents a development-stage run where several tests failed during schema refinement and constraint tuning. Final production runs passed after iterative debugging.
 
 ---
 
@@ -225,60 +141,46 @@ All dbt models are validated using automated testing:
 
 ---
 
-### 📊 Data Quality Validation
-![dbt validation](./visuals/dbt/dbt_data_quality_testing_results_staging.png)
-
 ### Execution Results
 
-- dbt run: 10/10 models executed successfully  
+- dbt run: 10/10 models successful  
 - dbt test: 9/9 tests passed  
 
-Validation evidence is available in the `/dbt/` folder.
+Validation stored in `/dbt/`.
 
-## SQL Analytics (Exploratory Layer)
-
-Before dbt modeling, SQL was used to validate business logic and explore key metrics:
-
-- Monthly revenue trends  
-- Top customer analysis  
-- Product performance ranking  
-- Repeat purchase behavior  
-- AOV segmentation  
-- Revenue concentration (Pareto analysis)  
-- Cohort LTV analysis  
 
 ---
 
-## Tableau Dashboards
+## 📊 Tableau Dashboard
 
-Interactive dashboards built in Tableau Public:
+Interactive Tableau Public dashboard showcasing revenue performance, customer behavior, cohort retention, and product-level insights.
 
-- Executive revenue performance overview  
-- Customer behavior segmentation  
-- Cohort retention heatmap  
-- Product performance distribution  
-- Revenue concentration (80/20 analysis)  
+🔗 Live Dashboard:
+https://public.tableau.com/views/FormaActiveRevenueRetentionAnalysis/FinalStory_FormaActiveGrowthRetentionAnalytics?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link
 
-📊 Tableau File:
-tableau_public/Forma Active – Revenue & Retention Analysis.twbx  
+### Dashboard Previews
+
+![Revenue Performance](./visuals/dashboard_slides/slide_1_performance.png)
+
+![Customer Behaviour Analysis](./visuals/dashboard_slides/slide_2_behaviour.png)
+
+![Key Insights Summary](./visuals/dashboard_slides/slide_3_insight.png)
+
+📁 Tableau Workbook (optional local file):
+`./tableau_public/Forma Active – Revenue & Retention Analysis.twbx`
 
 ---
 
-## Key Business Insights
 
-- Revenue is highly concentrated in a small number of products (Pareto effect)
-- A small segment of customers drives disproportionate revenue
-- Repeat purchases significantly increase total LTV
-- Growth is primarily acquisition-driven rather than retention-driven
-- Cohort analysis shows declining engagement after first purchase cycle
+## Key Findings
 
-
-## Data Engineering Notes
-
-- Synthetic scaling (10 → 300 orders) was used to simulate production-level analytics workload while preserving relational integrity
-- All transformations are reproducible through SQL + dbt layers
-- Notebook exploration was consolidated into a production-style pipeline for portfolio clarity
-
+- Product engagement follows a strong Pareto distribution — a small subset of listings drives the majority of reviews and activity.
+- Pricing impact is category-dependent rather than universal; no single optimal price tier exists across all product groups.
+- Wireless headphones show significantly higher engagement intensity compared to other categories, indicating stronger consumer demand signals.
+- Ratings remain relatively stable across price tiers, suggesting price affects demand volume rather than perceived product quality.
+- Cohort behavior indicates that repeat purchases significantly increase lifetime value, but growth is primarily driven by acquisition rather than retention.
+- These findings are validated through SQL exploratory analysis and dbt modeling layers.
+  
 ---
 
 ## Repository Structure
@@ -397,3 +299,4 @@ Shopify Admin API (development store simulation)
 ## Closing Note
 
 This project demonstrates a complete analytics engineering workflow, integrating extraction, transformation, modeling, and visualization into a reproducible end-to-end data pipeline.
+This project reflects analytical patterns and correlations derived from a simulated ecommerce dataset and should be interpreted as exploratory business intelligence rather than causal inference.
