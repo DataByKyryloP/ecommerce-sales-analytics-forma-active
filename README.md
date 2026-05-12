@@ -1,5 +1,6 @@
 # 📊 Forma Active — End-to-End Ecommerce Analytics Engineering Pipeline
-
+📖 Full project write-up (story + walkthrough):  
+https://medium.com/@databykyrylop/forma-active-from-10-shopify-orders-to-a-dbt-modelled-warehouse-building-an-analytics-pipeline-1bd599f97e8c
 ## Overview
 
 This project simulates a real-world analytics engineering workflow for a direct-to-consumer (DTC) ecommerce brand (“Forma Active”). It demonstrates a full end-to-end data pipeline covering data extraction, transformation, modeling, and business intelligence.
